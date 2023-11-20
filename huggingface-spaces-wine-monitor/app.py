@@ -16,10 +16,10 @@ with gr.Blocks() as demo:
     with gr.Row():
       with gr.Column():
           gr.Label("Today's Predicted Image")
-          input_img = gr.Image("latest_wine.png", elem_id="predicted-img").style(width=256, height=256)
+          input_img = gr.Image("latest_wine.png", elem_id="predicted-img").style(width=610, height=256)
       with gr.Column():
           gr.Label("Today's Actual Image")
-          input_img = gr.Image("actual_wine.png", elem_id="actual-img").style(width=256, height=256)
+          input_img = gr.Image("actual_wine.png", elem_id="actual-img").style(width=610, height=256)
     with gr.Row():
       with gr.Column():
           gr.Label("Recent Prediction History")
@@ -28,5 +28,5 @@ with gr.Blocks() as demo:
           gr.Label("Confusion Matrix with Historical Prediction Performance")
           input_img = gr.Image("confusion_matrix.png", elem_id="confusion-matrix")
 
-demo.launch()
-# demo.launch(share=True)
+# demo.launch()
+demo.launch(share=True)

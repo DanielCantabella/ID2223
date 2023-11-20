@@ -10,7 +10,7 @@ fs = project.get_feature_store()
 
 
 mr = project.get_model_registry()
-model = mr.get_model("wine_model", version=1)
+model = mr.get_model("wine_model", version=3)
 model_dir = model.download()
 model = joblib.load(model_dir + "/wine_model.pkl")
 print("Model downloaded")
@@ -35,15 +35,15 @@ def wine(alcohol, sulphates, volatile_acidity, total_sulfur_dioxide):
 demo = gr.Interface(
     fn=wine,
     title="Wine quality Predictive Analytics",
-    description="Experiment with sepal/petal lengths/widths to predict which flower it is.",
+    description="Experiment with the different variables to predict the quality of the wine.",
     allow_flagging="never",
     inputs=[
-        gr.inputs.Number(default=9.0, label="alcohol"),
-        gr.inputs.Number(default=1.0, label="sulphates"),
-        gr.inputs.Number(default=1.4, label="volatile_acidity"),
-        gr.inputs.Number(default=220, label="total_sulfur_dioxide"),
+        gr.inputs.Number(default=9.0, label="Alcohol (allowed values range from 8 to 15)"),
+        gr.inputs.Number(default=1.0, label="Sulphates  (allowed values range from 0 to 2)"),
+        gr.inputs.Number(default=1.4, label="Volatile Acidity (allowed values range from 0 to 2)"),
+        gr.inputs.Number(default=220, label="Total Sulfur Dioxide (allowed values range from 0 to 440)"),
         ],
-    outputs=gr.Image(type="pil").style(width=256, height=256))
+    outputs=gr.Image(type="pil").style(width=605, height=256))
 
-demo.launch(debug=True)
+demo.launch(debug=True, share=True)
 

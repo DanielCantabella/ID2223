@@ -27,7 +27,7 @@ def g():
     fs = project.get_feature_store()
     
     mr = project.get_model_registry()
-    model = mr.get_model("wine_model", version=1)
+    model = mr.get_model("wine_model", version=3)
     model_dir = model.download()
     model = joblib.load(model_dir + "/wine_model.pkl")
     
@@ -90,9 +90,9 @@ def g():
     predictions = history_df[['prediction']]
     labels = history_df[['label']]
 
-    # Only create the confusion matrix when our iris_predictions feature group has examples of all 3 iris flowers
-    print("Number of different flower predictions to date: " + str(predictions.value_counts().count()))
-    if predictions.value_counts().count() == 3:
+    # Only create the confusion matrix when our wine_predictions feature group has examples of all 2 wine quality
+    print("Number of different wine quality predictions to date: " + str(predictions.value_counts().count()))
+    if predictions.value_counts().count() == 2:
         results = confusion_matrix(labels, predictions)
     
         df_cm = pd.DataFrame(results)
@@ -104,8 +104,8 @@ def g():
         fig.savefig("./confusion_matrix.png")
         dataset_api.upload("./confusion_matrix.png", "Resources/images", overwrite=True)
     else:
-        print("You need 3 different flower predictions to create the confusion matrix.")
-        print("Run the batch inference pipeline more times until you get 3 different iris flower predictions") 
+        print("You need 2 different wine quality predictions to create the confusion matrix.")
+        print("Run the batch inference pipeline more times until you get 2 different wine quality predictions")
 
 
 if __name__ == "__main__":

@@ -7,11 +7,20 @@
 `pip install -r requirements.txt`
 6. Next you need to run the [feature pipeline notebook](wine-eda-and-backfill-feature-group.ipynb) to save the feature groups of our data in HopsWorks.
 7. Then, you can run [“daily” feature pipeline script](wine-feature-pipeline-daily.py) to generate synthetic wine and run it once per day to add a new synthetic wine (you can use cronjob for example):
-`modal run wine-feature-pipeline-daily.py`
+`modal run wine-feature-pipeline-daily.py::`
 8. After that, you can run the [training pipeline notebook](wine-training-pipeline.ipynb) to read training data with a Feature View from Hopsworks,
 and train a Multilayer Perceptron Classifier model to predict if a wine’s quality is high or low.
 9. In order to predict the quality of the new wine(s) added you can run the [batch inference pipeline script](wine-batch-inference-pipeline.py):
-`modal run wine-batch-inference-pipeline.py`
+`modal run wine-batch-inference-pipeline.py::`
 10. If you want to see the user interface you should run [this script](huggingface-spaces-wine-monitor%2Fapp.py) to show the most recent wine quality prediction
 and outcome, and a confusion matrix with historical prediction performance. If you want to enter or select feature values to predict
 the quality of a wine for the features you entered, then you need to run [this script](huggingface-spaces-wine%2Fapp.py).
+
+You will get a public URLs generated for the interface like the following ones:
+
+```
+https://5a11a6b1-f17f-4eda.gradio.live/
+https://4a43761c-6ce8-492a.gradio.live/
+```
+Predictions are shown as images labeled with 0 and 1 to represent low and high quality wine, respectively.
+

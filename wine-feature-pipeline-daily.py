@@ -45,7 +45,7 @@ def generate_wine(quality, alcohol_max, alcohol_min,
 
 def get_random_wine():
     """
-    Returns a DataFrame containing one random iris flower
+    Returns a DataFrame containing one random wine
     """
     import pandas as pd
     import random
